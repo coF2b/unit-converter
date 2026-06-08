@@ -24,7 +24,15 @@ fn main() {
     println!("Enter the value to convert:");
     let mut input = String::new();
     io::stdin().read_line(&mut input).expect("Failed to read line");
-    let value: f64 = input.trim().parse().expect("Failed to parse input");
+    
+    let value: f64 = match input.trim().parse() {
+        Ok(v) => v,
+        Err(_) => {
+            println!("Please enter a valid number.");
+            return;
+        }
+    };
+    
     println!("Enter the unit to convert from:");
     let mut from_unit = String::new();
     io::stdin().read_line(&mut from_unit).expect("Failed to read line");
